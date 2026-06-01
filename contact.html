@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Chirag R Karanth</title>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        /* Neutral Styling for Contact Page */
+        body {
+            background-color: #222;
+            color: #eee;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .contact-card {
+            background-color: #111;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 1px solid #333;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-links a {
+            display: block;
+            padding: 1rem;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+        .contact-links a:hover {
+            background-color: #eee;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-card">
+        <h1>Establish Connection</h1>
+        <div class="contact-links">
+            <a href="mailto:placeholder@example.com">Email</a>
+            <a href="https://linkedin.com/in/placeholder" target="_blank">LinkedIn</a>
+            <a href="https://github.com/placeholder" target="_blank">GitHub</a>
+            <a href="https://twitter.com/placeholder" target="_blank">Twitter / X</a>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="javascript:history.back()" style="color: #888; text-decoration: underline;">&larr; Go Back</a>
+        </div>
+    </div>
+
+    <!-- Contact page still needs avatar toggle -->
+    <div id="avatar-container" style="position: fixed; bottom: 20px; right: 20px; width: 120px; cursor: pointer;"></div>
+
+    <script>
+        // Check if user came from light or dark to keep the state, default dark for neutral
+        const isDark = document.referrer.includes('blacklight') || 
+                       document.referrer.includes('sports') || 
+                       document.referrer.includes('cooking') || 
+                       document.referrer.includes('photography') || 
+                       document.referrer.includes('blog') || 
+                       document.referrer.includes('doodles');
+        
+        if (!isDark && document.referrer !== '') {
+            document.body.classList.add('light-side');
+            // override neutral styles to look more like light side
+            document.body.style.backgroundColor = '#FFE7D1';
+            document.body.style.color = '#1a1a1a';
+            const card = document.querySelector('.contact-card');
+            card.style.backgroundColor = '#fff8f2';
+            card.style.borderColor = 'rgba(192, 133, 90, 0.2)';
+            card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+            const links = document.querySelectorAll('.contact-links a');
+            links.forEach(link => {
+                link.style.borderColor = '#c0855a';
+                link.style.color = '#c0855a';
+                link.onmouseover = () => { link.style.backgroundColor = '#c0855a'; link.style.color = '#fff8f2'; };
+                link.onmouseout = () => { link.style.backgroundColor = 'transparent'; link.style.color = '#c0855a'; };
+            });
+        } else {
+            document.body.classList.add('dark-side');
+            const links = document.querySelectorAll('.contact-links a');
+            links.forEach(link => {
+                link.style.borderColor = '#FF2E2E';
+                link.style.color = '#FF2E2E';
+                link.onmouseover = () => { link.style.backgroundColor = '#FF2E2E'; link.style.color = '#050505'; };
+                link.onmouseout = () => { link.style.backgroundColor = 'transparent'; link.style.color = '#FF2E2E'; };
+            });
+        }
+    </script>
+
+    
+    <script src="js/hyperspace.js"></script>
+    <script src="js/toggle.js"></script>
+</body>
+</html>
