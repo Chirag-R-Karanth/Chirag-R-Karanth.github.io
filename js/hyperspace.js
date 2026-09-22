@@ -37,7 +37,8 @@ window.hyperspaceJump = function(targetUrl) {
     const duration = 1000; // 1 second
 
     function animate(time) {
-        ctx.fillStyle = warp ? 'rgba(0, 0, 0, 0.1)' : '#000';
+        // Create trailing effect by drawing semi-transparent black
+        ctx.fillStyle = warp ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.8)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         const elapsed = time - startTime;
@@ -61,7 +62,7 @@ window.hyperspaceJump = function(targetUrl) {
                 star.z = canvas.width;
                 star.x = Math.random() * canvas.width - centerX;
                 star.y = Math.random() * canvas.height - centerY;
-                star.pz = star.z;
+                star.pz = canvas.width; // Reset pz to prevent drawing lines across the screen when wrapping
             }
 
             const sx = star.x / star.z * canvas.width + centerX;
@@ -76,11 +77,25 @@ window.hyperspaceJump = function(targetUrl) {
             ctx.beginPath();
             ctx.moveTo(px, py);
             ctx.lineTo(sx, sy);
-            ctx.lineWidth = warp ? 3 : 1.5;
             
-            const colorVal = Math.min(255, 255 - (star.z / canvas.width) * 255);
-            ctx.strokeStyle = `rgb(${colorVal}, ${colorVal}, 255)`;
+            // Add gradient/glow based on warp speed
+            ctx.lineWidth = warp ? 4 : 2;
+            ctx.lineCap = "round";
+            
+            const intensity = Math.min(255, 255 - (star.z / canvas.width) * 255);
+            // Alternate colors slightly for visual richness (blueish to whitish)
+            const r = i % 3 === 0 ? 255 : intensity;
+            const g = i % 2 === 0 ? 255 : intensity;
+            
+            ctx.strokeStyle = `rgba(${r}, ${g}, 255, ${intensity / 255})`;
             ctx.stroke();
+        }
+        
+        // Final flash effect right before transition
+        if (elapsed > duration - 200) {
+            const flashAlpha = Math.min(1, (elapsed - (duration - 200)) / 200);
+            ctx.fillStyle = `rgba(255, 255, 255, ${flashAlpha})`;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
         
         animationId = requestAnimationFrame(animate);
