@@ -1,58 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-side="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Chirag R Karanth</title>
-    <link rel="stylesheet" href="css/shared.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Chirag R. Karanth</title>
+  <meta name="description" content="Selected projects by Chirag R. Karanth — atomic orbital visualisation, number plate detection, the web dev bootcamp suite, this rebuilt portfolio and Linux ricing.">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{if(sessionStorage.getItem('side-arrive')==='1'){sessionStorage.removeItem('side-arrive');document.documentElement.classList.add('arriving');}}catch(e){}document.documentElement.classList.add('js');})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,540;9..144,600&family=Inter:wght@400;500;560;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/light.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f6f1e8'/%3E%3Ctext x='16' y='22' font-family='Georgia' font-size='17' font-weight='bold' text-anchor='middle' fill='%235b7f99'%3EC%3C/text%3E%3C/svg%3E">
 </head>
-<body class="light-side">
-    <nav>
-        <div class="logo">CRK</div>
+<body class="side-light">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="side-wash" id="side-wash" aria-hidden="true"></div>
+
+  <header class="site-head">
+    <div class="wrap head-inner">
+      <a class="brand" href="index.html">Chirag<span class="brand-dot">.</span>Karanth</a>
+      <nav class="head-nav" aria-label="Primary">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <li><a href="finance.html">Finance</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html" aria-current="true">Projects</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
         </ul>
-    </nav>
+      </nav>
+      <div class="side-switch" role="group" aria-label="Switch display side">
+        <a class="side-switch-item" href="index.html" aria-current="true"><span class="sw-dot" aria-hidden="true"></span>Light</a>
+        <a class="side-switch-item" href="blacklight.html" data-switch><span class="sw-dot" aria-hidden="true"></span>Blacklight</a>
+      </div>
+    </div>
+  </header>
 
-    <main>
-        <section>
-            <h2>Project Showcase</h2>
-            <p>Selected works demonstrating engineering capabilities and problem-solving.</p>
-            <div class="grid" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3>Distributed Auth Service</h3>
-                    <p>Designed and implemented an OAuth2 compliant distributed authentication service handling 10k+ requests per second.</p>
-                    <a href="#" class="btn">View Architecture</a>
-                </div>
-                <div class="card">
-                    <h3>Real-time Analytics Engine</h3>
-                    <p>Built a real-time analytics pipeline using Kafka and ClickHouse for business intelligence dashboards.</p>
-                    <a href="#" class="btn">View Code</a>
-                </div>
-                <div class="card">
-                    <h3>Infrastructure as Code</h3>
-                    <p>Automated provisioning of multi-region AWS environments using Terraform and CI/CD pipelines.</p>
-                    <a href="#" class="btn">View Repo</a>
-                </div>
+  <main id="main">
+
+    <!-- ══════════ Projects ══════════ -->
+    <section id="projects" class="rv">
+      <div class="wrap">
+        <p class="sec-label">Selected Projects</p>
+        <h2 class="sec-title">Built, broken, learnt</h2>
+        <p class="sec-lead">Each project opens into the full story — what it is, why it exists, the technical calls I made, and a note or two from the notebook margin.</p>
+
+        <div class="projects-list">
+
+          <article class="project" data-tech="python,numpy,scipy" data-keys="atomic orbital quantum">
+            <div class="project-kicker">
+              <span class="proj-year">2025 — ongoing</span>
+              <span class="proj-status">experiment</span>
             </div>
-        </section>
-    </main>
+            <h3><span class="proj-num">01</span>Atomic Orbital</h3>
+            <p class="blurb">A Python investigation into whether atomic orbitals can be visualised and validated from quantum mechanics directly — numerical wavefunctions, plausible shapes, and a daily argument with the mesh resolution.</p>
+            <div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">NumPy</span><span class="tech-tag">SciPy</span></div>
+            <button class="project-open" type="button">Open case study <span class="btn-arr">→</span></button>
 
-    <footer>
-        <div class="contact-links">
-            <a href="contact.html">Contact Me</a>
+            <div class="project-detail" hidden>
+              <div class="pd-block">
+                <h4>What it is</h4>
+                <p>A computational look at the hydrogen / orbital wavefunctions. It validates shape and energy predictions numerically rather than trusting a textbook figure — and renders them so the result is actually worth looking at.</p>
+              </div>
+              <div class="pd-block">
+                <h4>Why it exists</h4>
+                <p>The course material stopped at the equations. I wanted to see what they <em>looked</em> like, and to know whether I understood them well enough to implement them.</p>
+              </div>
+              <div class="pd-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>A solver core for the wavefunction components.</li>
+                  <li>Validation against known orbital results.</li>
+                  <li>Render pipeline that turns the maths into something visual.</li>
+                </ul>
+              </div>
+              <div class="pd-block">
+                <h4>Technical decisions &amp; current state</h4>
+                <p>Kept everything to <code>numpy</code>/<code>scipy</code> so the science stays obvious and the dependencies stay light. Still actively probing — readme honesty included.</p>
+              </div>
+              <div class="pd-notes">
+                <button class="pd-notes-btn" type="button" aria-expanded="false">✎ the real story (field notes)</button>
+                <div class="pd-notes-body">
+                  <p>This started as "can I render the hydrogen wavefunction without completely losing it?" The repository description literally says <em>"to satisfy my ego"</em> and I am not removing that.</p>
+                  <p>Lesson re-learnt: mesh density is a love-hate relationship, and always check your physical units before trusting a pretty picture.</p>
+                </div>
+              </div>
+              <div class="pd-links">
+                <a class="btn-ghost" href="https://github.com/Chirag-R-Karanth/Atomic_orbital" target="_blank" rel="noopener">GitHub ↪</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-tech="python,opencv,ml" data-keys="number plate detection ocr">
+            <div class="project-kicker">
+              <span class="proj-year">2024</span>
+              <span class="proj-status">prototype</span>
+            </div>
+            <h3><span class="proj-num">02</span>Number Plate Detection</h3>
+            <p class="blurb">OpenCV-based detection and OCR for vehicle number plates — the classic CV project, done starting from the documentation instead of a copy-paste tutorial.</p>
+            <div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span><span class="tech-tag">OCR</span></div>
+            <button class="project-open" type="button">Open case study <span class="btn-arr">→</span></button>
+
+            <div class="project-detail" hidden>
+              <div class="pd-block">
+                <h4>What it is</h4>
+                <p>Detects a plate region in a photo, isolates it, and runs OCR to pull the registration number. My first real computer-vision pipeline.</p>
+              </div>
+              <div class="pd-block">
+                <h4>Why it exists</h4>
+                <p>I wanted a project where the input is messy reality (bad angles, glare, Indian plates) rather than clean demo data.</p>
+              </div>
+              <div class="pd-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>Contour-based plate localisation.</li>
+                  <li>Preprocessing chain tuned for variable light and focus.</li>
+                  <li>OCR post-processing to clean up misread characters.</li>
+                </ul>
+              </div>
+              <div class="pd-block">
+                <h4>Current state</h4>
+                <p>Solid prototype. Works on bright, straight-on shots; still dreams of handling rain. A good exercise in knowing exactly where each stage loses accuracy.</p>
+              </div>
+              <div class="pd-notes">
+                <button class="pd-notes-btn" type="button" aria-expanded="false">✎ the real story (field notes)</button>
+                <div class="pd-notes-body">
+                  <p>The first plate I ever pointed this at belonged to my own family's car. The results were… humbling. OCR on regional script variants remains a battle.</p>
+                  <p>The best part of this project is that it taught me to debug by inspecting intermediate images instead of hoping.</p>
+                </div>
+              </div>
+              <div class="pd-links">
+                <a class="btn-ghost" href="https://github.com/Chirag-R-Karanth/Numberplatedetection" target="_blank" rel="noopener">GitHub ↪</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-tech="htmlcss,js" data-keys="webdev bootcamp assignments">
+            <div class="project-kicker">
+              <span class="proj-year">2024</span>
+              <span class="proj-status">course collection</span>
+            </div>
+            <h3><span class="proj-num">03</span>WebDev Bootcamp Suite</h3>
+            <p class="blurb">The full set of projects and assignments from the RVCE web development bootcamp — kept as a working record of how I learned the fundamentals, cellulite included.</p>
+            <div class="proj-tech"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+            <button class="project-open" type="button">Open case study <span class="btn-arr">→</span></button>
+
+            <div class="project-detail" hidden>
+              <div class="pd-block">
+                <h4>What it is</h4>
+                <p>A repository collecting every bootcamp assignment — from "center this div" to a reasonably complete front-end piece.</p>
+              </div>
+              <div class="pd-block">
+                <h4>Why it exists</h4>
+                <p>Progress is much easier to believe when you can scroll through the evolution. Also — archiving bootcamp code is alarmingly easy to skip.</p>
+              </div>
+              <div class="pd-block">
+                <h4>What it shows</h4>
+                <ul>
+                  <li>Clean semantic markup.</li>
+                  <li>Progressive enhancement — it still works with JS off.</li>
+                  <li>Reading documentation before cargo-culting Stack Overflow.</li>
+                </ul>
+              </div>
+              <div class="pd-notes">
+                <button class="pd-notes-btn" type="button" aria-expanded="false">✎ the real story (field notes)</button>
+                <div class="pd-notes-body">
+                  <p>All the classic beginner fears live in here — the "why won't this flex-col center" era, the box-shadow over-admin, the first time flexbox finally clicked.</p>
+                </div>
+              </div>
+              <div class="pd-links">
+                <a class="btn-ghost" href="https://github.com/Chirag-R-Karanth/WebDevBootcamp" target="_blank" rel="noopener">GitHub ↪</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-tech="htmlcss,js,git" data-keys="portfolio dual personality light blacklight">
+            <div class="project-kicker">
+              <span class="proj-year">2025 — ongoing</span>
+              <span class="proj-status">this very site</span>
+            </div>
+            <h3><span class="proj-num">04</span>This Portfolio, Rebuilt</h3>
+            <p class="blurb">A portfolio that isn't a template. Two personalities — a professional Light Side and a personal Blacklight — sharing one identity, built with plain HTML, CSS and a little vanilla JavaScript.</p>
+            <div class="proj-tech"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">Vanilla JS</span><span class="tech-tag">GitHub Pages</span></div>
+            <button class="project-open" type="button">Open case study <span class="btn-arr">→</span></button>
+
+            <div class="project-detail" hidden>
+              <div class="pd-block">
+                <h4>What it is / why it exists</h4>
+                <p>The site you are reading. Built because "developer portfolio" templates all say the same five sentences, and I wanted mine to also be the thing I'm showing off.</p>
+              </div>
+              <div class="pd-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>A dual-theme system (Light / Blacklight) from one shared base.</li>
+                  <li>A photo map with clusters, drill-down and gallery views.</li>
+                  <li>Handwritten annotation layer, expansion-everywhere interactions, zero build step.</li>
+                </ul>
+              </div>
+              <div class="pd-block">
+                <h4>Technical decisions</h4>
+                <p>No framework — nothing to install, nothing to compile, easy to poke at. Everything from the design tokens to the map layers is vanilla.</p>
+              </div>
+              <div class="pd-links">
+                <a class="btn-ghost" href="https://github.com/Chirag-R-Karanth/Chirag-R-Karanth.github.io" target="_blank" rel="noopener">GitHub ↪</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-tech="linux,bash,shell" data-keys="linux ricing dotfiles desktop">
+            <div class="project-kicker">
+              <span class="proj-year">ongoing</span>
+              <span class="proj-status">personal systems</span>
+            </div>
+            <h3><span class="proj-num">05</span>Linux Desktop Ricing</h3>
+            <p class="blurb">My dotfiles and window-manager setup — an ongoing, zero-shot course in how operating systems actually behave, disguised as making a desktop look good.</p>
+            <div class="proj-tech"><span class="tech-tag">Linux</span><span class="tech-tag">Shell</span><span class="tech-tag">Configs</span></div>
+            <button class="project-open" type="button">Open case study <span class="btn-arr">→</span></button>
+
+            <div class="project-detail" hidden>
+              <div class="pd-block">
+                <h4>What it is</h4>
+                <p>A living repository of desktop configuration — window manager, status bars, terminal setup, scripts. Every file is a decision I made and documented by writing it.</p>
+              </div>
+              <div class="pd-block">
+                <h4>Why it counts as a project</h4>
+                <p>Ricing is secretly a systems course, just with better visuals: process management, X / Wayland, daemons, autostarts, and the eternal "why does this config not load" loop.</p>
+              </div>
+              <div class="pd-block">
+                <h4>What it teaches</h4>
+                <ul>
+                  <li>Reading documentation and man pages for fun.</li>
+                  <li>Debugging configs by careful elimination.</li>
+                  <li>Never trusting a setup script you don't understand.</li>
+                </ul>
+              </div>
+              <div class="pd-notes">
+                <button class="pd-notes-btn" type="button" aria-expanded="false">✎ the real story (field notes)</button>
+                <div class="pd-notes-body">
+                  <p>There is a 3 AM window-manager rabbit hole, and I have fallen into it multiple times. Worth noting that the Blacklight side of this site and the ricing sessions share a timezone: after midnight.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <div id="avatar-container"></div>
+  </main>
 
-    
-    <script src="js/hyperspace.js"></script>
-    <script src="js/toggle.js"></script>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <p class="foot-brand">CRK<span style="color:var(--accent)">.</span></p>
+      <div class="foot-social">
+        <a href="https://github.com/Chirag-R-Karanth" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/chiragrkaranth" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.2 8h4.6v14.5H.2V8Zm7.5 0h4.4v2h.06c.61-1.16 2.1-2.38 4.33-2.38 4.63 0 5.49 3.05 5.49 7.01v7.87h-4.6v-6.98c0-1.66-.03-3.8-2.31-3.8-2.32 0-2.67 1.81-2.67 3.68v7.1H7.7V8Z"/></svg>
+        </a>
+        <a href="mailto:hello@chiragrkaranth.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+        </a>
+        <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41Z"/></svg>
+        </a>
+      </div>
+      <p class="foot-note">Light Side — the professional one. <a href="blacklight.html" style="color:var(--accent-ink);border-bottom:1px dotted var(--accent);">There's another side →</a></p>
+      <p class="foot-note">© <span id="year">2026</span> Chirag R. Karanth · Bengaluru, India</p>
+    </div>
+  </footer>
+
+  <div class="ink-veil" id="ink-veil" aria-hidden="true" hidden></div>
+
+  <dialog class="dialog" id="project-dialog" aria-labelledby="pd-title">
+    <div class="dialog-panel">
+      <div class="dialog-head">
+        <div>
+          <div class="sec-label">Case study</div>
+          <h3 id="pd-title"></h3>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="dialog-body" id="pd-body"></div>
+    </div>
+  </dialog>
+
+  <script src="js/hyperspace.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

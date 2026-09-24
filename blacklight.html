@@ -6,11 +6,10 @@
   <title>Chirag R. Karanth — The Unfiltered Version</title>
   <meta name="description" content="The personal side of Chirag R. Karanth — photography and a photo map, a journal, a media archive, cooking and sports.">
   <meta name="color-scheme" content="dark">
-  <script>(function(){try{if(sessionStorage.getItem('side-arrive')==='1'){sessionStorage.removeItem('side-arrive');document.documentElement.classList.add('arriving');}}catch(e){}})();</script>
+  <script>(function(){try{if(sessionStorage.getItem('side-arrive')==='1'){sessionStorage.removeItem('side-arrive');document.documentElement.classList.add('arriving');}}catch(e){}document.documentElement.classList.add('js');})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,540;9..144,600&family=Inter:wght@400;500;560;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/blacklight.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316151b'/%3E%3Ctext x='16' y='22' font-family='Georgia' font-size='17' font-weight='bold' text-anchor='middle' fill='%23c0ade4'%3EC%3C/text%3E%3C/svg%3E">
@@ -22,15 +21,15 @@
 
   <header class="site-head">
     <div class="wrap head-inner">
-      <a class="brand" href="#home">Chirag<span class="brand-dot">.</span>Karanth</a>
+      <a class="brand" href="blacklight.html">Chirag<span class="brand-dot">.</span>Karanth</a>
       <nav class="head-nav" aria-label="Primary">
         <ul>
-          <li><a href="#home" aria-current="true">Home</a></li>
-          <li><a href="#photography">Photos</a></li>
-          <li><a href="#blog">Journal</a></li>
-          <li><a href="#media">Media</a></li>
-          <li><a href="#cooking">Cooking</a></li>
-          <li><a href="#sports">Sports</a></li>
+          <li><a href="blacklight.html" aria-current="true">Home</a></li>
+          <li><a href="photography.html">Photos</a></li>
+          <li><a href="blog.html">Journal</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="cooking.html">Cooking</a></li>
+          <li><a href="sports.html">Sports</a></li>
         </ul>
       </nav>
       <div class="side-switch" role="group" aria-label="Switch display side">
@@ -43,7 +42,7 @@
   <main id="main">
 
     <!-- ══════════ Home ══════════ -->
-    <section class="hero" id="home">
+    <section class="hero wrap" id="home">
       <div class="hero-copy">
         <p class="hero-eyebrow">system un-filtered — Bengaluru</p>
         <h1>Same person. <em>No filter.</em></h1>
@@ -56,8 +55,8 @@
           <span class="tick">✎</span> professional-me is doing great. this is me.
         </div>
         <div class="hero-actions">
-          <a class="btn" href="#photography">Look at the photos <span class="btn-arr">→</span></a>
-          <a class="btn-ghost" href="#journal">Read the journal <span class="btn-arr">→</span></a>
+          <a class="btn" href="photography.html">Look at the photos <span class="btn-arr">→</span></a>
+          <a class="btn-ghost" href="blog.html">Read the journal <span class="btn-arr">→</span></a>
         </div>
         <p class="hero-quick hand" style="color:var(--muted); margin-top:2rem; font-size:1rem; display:flex; gap:1.2rem; flex-wrap:wrap;">
           <span>also Comps @ RVCE</span><span>·</span><span>tabs open: RSS + OpenStreetMap</span><span>·</span><span>timezone: after midnight</span>
@@ -74,240 +73,6 @@
         <svg class="doodle" style="top:76%; left:-4%; width:120px; height:60px;" viewBox="0 0 120 60" aria-hidden="true">
           <path d="M4 30 Q 40 8 78 24 T 118 18 M78 24 l-14 -12 M78 24 l-8 14"/>
         </svg>
-      </div>
-    </section>
-
-    <!-- ══════════ Photography / Video / Map ══════════ -->
-    <section id="photography" class="rv">
-      <div class="wrap">
-        <p class="sec-label">Photography &amp; Film</p>
-        <h2 class="sec-title">
-          Places I've <span class="ms">pointed<svg class="ink ink-under" viewBox="0 0 120 22" aria-hidden="true"><path d="M6 16q30 9 60 -3t50 -6"/></svg></span> a camera
-        </h2>
-        <p class="sec-lead">One section, two views. Explore on a map — where each frame was taken, straight from the EXIF where possible — or scroll it like a personal archive.</p>
-
-        <div class="photo-toolbar">
-          <div class="view-switch" role="group" aria-label="Photo view">
-            <button type="button" data-view="gallery" aria-pressed="true"><span aria-hidden="true">▦</span> Gallery</button>
-            <button type="button" data-view="map" aria-pressed="false"><span aria-hidden="true">⌖</span> Map</button>
-          </div>
-          <div class="place-chips" id="place-chips" role="group" aria-label="Filter by place"></div>
-        </div>
-
-        <div class="photo-map-box" id="photo-map-box" hidden>
-          <div class="map-hint hand">⌖ pick a place, or zoom in</div>
-          <div id="photo-map" role="application" aria-label="Map of photographs"></div>
-        </div>
-
-        <div class="photo-grid" id="photo-grid"></div>
-        <p class="photo-empty" id="photo-empty" hidden>
-          Nothing here yet — add photos to <code>assets/photos/</code> and list them in <code>js/data.js</code>.
-        </p>
-        <p class="marginnote note-r" style="top:-1rem;">weather cleared up for once 🌳</p>
-      </div>
-    </section>
-
-    <!-- ══════════ Blog / Journal ══════════ -->
-    <section id="blog" class="rv">
-      <div class="wrap">
-        <p class="sec-label">Journal</p>
-        <h2 class="sec-title">
-          Notes from the <span class="ms">margin<svg class="ink ink-ring" viewBox="0 0 120 120" aria-hidden="true"><path class="ink-ring" d="M60 12a48 48 0 1 0 0 96a48 48 0 0 0 0 -96"/></svg></span>
-        </h2>
-        <p class="sec-lead">Longer writing lives here. Click an entry to open it — the rest of the page stays out of your way.</p>
-
-        <div class="journal">
-
-          <details class="journal-entry">
-            <summary class="journal-summary">
-              <span class="j-date">2026 · 03</span>
-              <h3><span class="hand">✒</span>On keeping a notebook I almost never reread</h3>
-            </summary>
-            <div class="journal-body">
-              <p>I have three notebooks and a shared sense of guilt about all of them. But I've noticed that writing something down isn't really about rereading it — the point is the moment it takes to think, "is this worth a page?" Nearly everything gets a page. Two-AM debugging sessions, a phone number I'll never call, the exact taste of a good filter coffee.</p>
-              <p>The pages I do reread are the worst hours. Not because they're deep — because they show that today's "impossible problem" was last week's "will fix after dinner". Nobody believes their own trajectory until their handwriting says so.</p>
-              <p>I don't reread the notebooks regularly. But I keep buying them on purpose.</p>
-              <p class="j-end">— finished writing this, folded the corner, won't reopen it until I've forgotten it.</p>
-            </div>
-          </details>
-
-          <details class="journal-entry">
-            <summary class="journal-summary">
-              <span class="j-date">2026 · 01</span>
-              <h3><span class="hand">✒</span>The case for slow, unbroken projects</h3>
-            </summary>
-            <div class="journal-body">
-              <p>Everything I pick up now comes with a deadline I gave it myself. The atomic orbittal thing has no deadline and it's the most patient project I own. It tolerates me re-approaching the same equation three different ways, because nobody is waiting on it.</p>
-              <p>I think ambition benefits from being mostly unobserved. The projects that embarrass me at first — the ones started "just to see" — age the best. Meanwhile the demo-ready ones get abandoned the week after the screenshot.</p>
-              <p>New rule, borrowed from gardening: keep one thing growing in a place nobody checks.</p>
-            </div>
-          </details>
-
-          <details class="journal-entry">
-            <summary class="journal-summary">
-              <span class="j-date">2025 · 09</span>
-              <h3><span class="hand">✒</span>Notes from a week of rain in Bengaluru</h3>
-            </summary>
-            <div class="journal-body">
-              <p>The city reorganises itself on the first heavy day. Offices half-empty, chai stands shoulder-deep in custom, and the traffic learns a slower dialect. I spent the week staring out windows and collecting the failure modes of every app I rely on — servers timing out, alerts I'd stopped noticing earlier in the year.</p>
-              <p>Rain is a free, unpaid chaos-engineering experiment on your own life. I came out of it with one working umbrella, three damp notebooks, and a healthy respect for the servers that were still up in someone else's city.</p>
-              <p class="j-end">— the umbrella is already gone.</p>
-            </div>
-          </details>
-
-          <details class="journal-entry">
-            <summary class="journal-summary">
-              <span class="j-date">2025 · 06</span>
-              <h3><span class="hand">✒</span>Why I riced my Linux desktop</h3>
-            </summary>
-            <div class="journal-body">
-              <p>It looks like decoration. It is, and that's allowed — but it's also the most productive systems course I never enrolled in. To make a window manager behave you learn autostarts and daemons and the fact that a lock file is never the thing you think it is.</p>
-              <p>Then you learn the real lesson: a setup you don't understand will betray you, and the fun is that it teaches you before it breaks for good. My desktop now works because I've broken it forty times in a row.</p>
-              <p class="j-end">— current theme taxes the GPU exactly 0%. efficiency.</p>
-            </div>
-          </details>
-
-          <details class="journal-entry">
-            <summary class="journal-summary">
-              <span class="j-date">2025 · 04</span>
-              <h3><span class="hand">✒</span>The number plate that made me doubt OCR</h3>
-            </summary>
-            <div class="journal-body">
-              <p>My detection project was going brilliantly until I pointed it at real Indian plates and the text refused to be a font. Regional scripts, sun glare, a speck of mud in exactly the wrong pixel. The pipeline was correct; reality was not in the training set.</p>
-              <p>I kept it. Shipping a prototype that knows exactly where it's weak is more honest than a demo that pretends every frame is ideal. And honestly — watching the failure is the tutorial.</p>
-              <p class="j-end">— it still can't read my own city's plates after dark. someday.</p>
-            </div>
-          </details>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════ Media Archive ══════════ -->
-    <section id="media" class="rv">
-      <div class="wrap">
-        <p class="sec-label">Media Archive</p>
-        <h2 class="sec-title">The <span class="ms">queue<svg class="ink ink-under" viewBox="0 0 120 22" aria-hidden="true"><path d="M6 16q30 9 60 -3t50 -6"/></svg></span> that never ends</h2>
-        <p class="sec-lead">One library for everything I read, play and watch. Filter by type, or by where I am in each thing.</p>
-
-        <div class="media-filters" id="media-filters" role="group" aria-label="Filter media archive"></div>
-        <p class="media-count" id="media-count"></p>
-        <div class="media-grid" id="media-grid"></div>
-        <p class="marginnote note-l" style="top:-2rem;">favourites get a star ★ — clearly earned</p>
-      </div>
-    </section>
-
-    <!-- ══════════ Cooking ══════════ -->
-    <section id="cooking" class="rv">
-      <div class="wrap">
-        <p class="sec-label">Cooking</p>
-        <h2 class="sec-title">Recipes with a 50% <span class="ms">success<svg class="ink ink-ring" viewBox="0 0 120 120" aria-hidden="true"><path class="ink-ring" d="M60 8a52 52 0 1 0 0 104a52 52 0 0 0 0 -104"/><path d="M60 26a34 34 0 1 0 0 68a34 34 0 0 0 0 -68"/></svg></span> rate</h2>
-        <p class="sec-lead">Mostly evidence that I can follow instructions, occasionally evidence of improvisation. All of it eaten.</p>
-
-        <div class="two-col">
-          <article class="card--note">
-            <svg class="card-corner tl" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 15V6a5 5 0 0 1 5-5h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <svg class="card-corner br" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1v9a5 5 0 0 1-5 5H1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <h3>Filter coffee, done properly <span class="hand" style="color:var(--pink);font-size:.95rem;">— non-negotiable</span></h3>
-            <p class="sub">the fixed point around which every morning orbits</p>
-            <ol class="recipe-steps">
-              <li><b>Chicory?</b> A little. Anyone who says zero is lying.</li>
-              <li>Fresh grounds into the tumbler. <b>Tamp lightly.</b></li>
-              <li>Boiling water, then <b>wait 4 minutes</b>. Do not rush this.</li>
-              <li>Drain through the filter into the davara. <b>Frothing butter</b> in the milk belongs in debates, not in my cup.</li>
-              <li>Serve strong. Leave the milk out of it for the first sip.</li>
-            </ol>
-          </article>
-
-          <article class="card--note">
-            <svg class="card-corner tr" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 15V6a5 5 0 0 0-5-5H1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <svg class="card-corner bl" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1v9a5 5 0 0 0 5 5h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <h3>Weekday dal <span class="hand" style="color:var(--pink);font-size:.95rem;">— the reliable one</span></h3>
-            <p class="sub">rice + dal + the universe stays stable</p>
-            <ol class="recipe-steps">
-              <li>Tur dal, pressure-cooked until it forgets its dignity.</li>
-              <li>Temper: <b>mustard, curry leaves, hing</b>, one dry chilli doing the drama.</li>
-              <li>Tomato, turmeric, salt. Simmer <b>not stir aggressively</b>.</li>
-              <li>Ghee only at the end — melted butter is a garnish, not an ingredient.</li>
-            </ol>
-          </article>
-
-          <article class="card--note">
-            <svg class="card-corner tl" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 15V6a5 5 0 0 1 5-5h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <svg class="card-corner tr" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 15V6a5 5 0 0 0-5-5H1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <h3>1 AM maggi protocol <span class="hand" style="color:var(--pink);font-size:.95rem;">— do not judge</span></h3>
-            <p class="sub">documented here for science</p>
-            <ol class="recipe-steps">
-              <li>Boil <b>less</b> water than the packet says. Trust me.</li>
-              <li>In goes the masala while the water is still calm.</li>
-              <li>Noodles in at a <b>roaring boil</b>. Two minutes, tops.</li>
-              <li>One egg, cracked in the last 40 seconds, stirred once.</li>
-              <li>Everything becomes better than it deserves to be.</li>
-            </ol>
-          </article>
-
-          <article class="card--note">
-            <svg class="card-corner br" viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1v9a5 5 0 0 1-5 5H1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <svg class="card-corner bl" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1v9a5 5 0 0 0 5 5h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <h3>Things I still can't do <span class="hand" style="color:var(--pink);font-size:.95rem;">— honestly, these</span></h3>
-            <p class="sub">a public accountability list</p>
-            <ul class="recipe-steps">
-              <li>Roti that refuses to behave (I blame the tawa).</li>
-              <li>Biryani that doesn't require negotiations afterwards.</li>
-              <li>Anything involving <b>jaggery as an "ingredient"</b>.</li>
-              <li>Plating. The plate is a destination, not an art exhibit.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════ Sports ══════════ -->
-    <section id="sports" class="rv">
-      <div class="wrap">
-        <p class="sec-label">Sports</p>
-        <h2 class="sec-title">Movement, <span class="ms">competitively<svg class="ink ink-under" viewBox="0 0 120 22" aria-hidden="true"><path d="M6 16q30 9 60 -3t50 -6"/></svg></span></h2>
-        <p class="sec-lead">Compete hard on some things, absolutely hopeless at others. Both columns are equally true.</p>
-
-        <div class="two-col">
-          <article class="card--note">
-            <h3><span class="hand" style="color:var(--green);">●</span> Currently playing</h3>
-            <p>
-              <span class="sport-pill">Badminton</span>
-              <span class="sport-pill">Football</span>
-              <span class="sport-pill">Cricket</span>
-              <span class="sport-pill">Table tennis</span>
-            </p>
-            <p style="margin-top:.8rem;">Badminton happens at least twice a week and loses are taken personally. Football is where I let the misses be forgiven by the next good pass.</p>
-          </article>
-
-          <article class="card--note">
-            <h3><span class="hand" style="color:var(--peach);">●</span> Long-time</h3>
-            <p>
-              <span class="sport-pill">Running</span>
-              <span class="sport-pill">Cycling</span>
-            </p>
-            <p style="margin-top:.8rem;">The dependable ones. No teammate to let down, just the road and a watch that loudly disagrees with my pace.</p>
-          </article>
-
-          <article class="card--note">
-            <h3><span class="hand" style="color:var(--pink);">●</span> Watch a lot, play never</h3>
-            <p>
-              <span class="sport-pill">F1</span>
-              <span class="sport-pill">Football (watching)</span>
-            </p>
-            <p style="margin-top:.8rem;">Full, unsolicited opinions about sports I have no business commenting on. Sunday-morning slot reserved for the season.</p>
-          </article>
-
-          <article class="card--note">
-            <h3><span class="hand" style="color:var(--blue);">●</span> Trying to start</h3>
-            <p>
-              <span class="sport-pill">Bouldering</span>
-              <span class="sport-pill">Swimming</span>
-            </p>
-            <p style="margin-top:.8rem;">Still mostly in the "bought the excuses" phase. The wall always wins, but I write down the routes now.</p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -334,18 +99,7 @@
 
   <div class="ink-veil" id="ink-veil" aria-hidden="true" hidden></div>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <button class="lb-close" type="button" aria-label="Close viewer">✕</button>
-    <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">‹</button>
-    <div class="lb-stage" id="lb-stage"></div>
-    <button class="lb-btn lb-next" type="button" aria-label="Next photo">›</button>
-    <div class="lb-cap"><p class="t" id="lb-title"></p><p class="m" id="lb-meta"></p></div>
-  </div>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="js/data.js" defer></script>
+  <script src="js/hyperspace.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="js/archives.js" defer></script>
-  <script src="js/photography.js" defer></script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chirag R. Karanth — Software & Systems</title>
-  <meta name="description" content="Chirag R. Karanth — computer science student and software builder in Bengaluru. Projects, skills, education and things I've actually shipped.">
+  <title>Education | Chirag R. Karanth</title>
+  <meta name="description" content="Where Chirag R. Karanth studies: B.E. Computer Science at R.V. College of Engineering, a web development bootcamp, and the self-directed Linux/Git syllabus.">
   <meta name="color-scheme" content="light dark">
   <script>(function(){try{if(sessionStorage.getItem('side-arrive')==='1'){sessionStorage.removeItem('side-arrive');document.documentElement.classList.add('arriving');}}catch(e){}document.documentElement.classList.add('js');})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,8 @@
       <a class="brand" href="index.html">Chirag<span class="brand-dot">.</span>Karanth</a>
       <nav class="head-nav" aria-label="Primary">
         <ul>
-          <li><a href="index.html" aria-current="true">Home</a></li>
-          <li><a href="education.html">Education</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="education.html" aria-current="true">Education</a></li>
           <li><a href="skills.html">Skills</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="achievements.html">Achievements</a></li>
@@ -40,34 +40,37 @@
 
   <main id="main">
 
-    <!-- ══════════ Home ══════════ -->
-    <section class="hero wrap" id="home">
-      <div class="hero-copy rv in">
-        <p class="hero-eyebrow">Chirag R. Karanth — Bengaluru, India</p>
-        <h1>I build software that <em>survives</em> contact with reality.</h1>
-        <p class="hero-sub">
-          Computer science student at R.V. College of Engineering. I work mostly in the
-          full-stack web trenches, dabble in systems and the occasional physics flavoured
-          side quest, and I keep things that ship. This page is the professional version of
-          me — it's accurate, it's just not the whole story.
-        </p>
-        <div class="hero-actions">
-          <a class="btn" href="projects.html">See what I build <span class="btn-arr">→</span></a>
-          <a class="btn-ghost" href="assets/resume.pdf" download>Download CV</a>
-        </div>
-        <p class="hero-quick">
-          <span><b>Now</b>&nbsp; B.E. CSE @ RVCE</span>
-          <span><b>Focus</b>&nbsp; Rust · DevOps · DSA</span>
-          <span><b>Side</b>&nbsp; Linux ricing</span>
-        </p>
-      </div>
+    <!-- ══════════ Education ══════════ -->
+    <section id="education" class="rv">
+      <div class="wrap">
+        <p class="sec-label">Education</p>
+        <h2 class="sec-title">Where I learn</h2>
+        <p class="sec-lead">The formal track, and the parts of my education that happened after midnight on my own machine.</p>
 
-      <div class="hero-visual rv in">
-        <div class="hero-slot">
-          <a class="tracker" id="side-tracker" href="blacklight.html" aria-label="Switch to the Blacklight side of this site">
-            <img id="tracker-img" src="assets/portrait-light.webp" alt="Portrait of Chirag R. Karanth" width="680" height="756">
-            <span class="tracker-cap">psst… there's another side to this site →</span>
-          </a>
+        <div class="edu-grid">
+          <article class="edu">
+            <span class="edu-line" aria-hidden="true"></span>
+            <span class="edu-tag">in progress</span>
+            <h3>B.E. Computer Science</h3>
+            <p class="edu-place">R.V. College of Engineering · Bengaluru</p>
+            <p class="edu-evidence">Coursework spanning data structures, algorithms, operating systems and digital systems. This is where half of the "why does it do that" habits were formed.</p>
+          </article>
+
+          <article class="edu">
+            <span class="edu-line" aria-hidden="true"></span>
+            <span class="edu-tag">2024</span>
+            <h3>Web Development Bootcamp</h3>
+            <p class="edu-place">R.V. College of Engineering</p>
+            <p class="edu-evidence">A structured full web track — HTML, CSS and JavaScript — that produced the small project collection in <a href="projects.html">#projects</a> and my first real sense of "senior CS students also sometimes use <code>!important</code>".</p>
+          </article>
+
+          <article class="edu">
+            <span class="edu-line" aria-hidden="true"></span>
+            <span class="edu-tag">ongoing</span>
+            <h3>Self-directed</h3>
+            <p class="edu-place">Linux · Git · systems</p>
+            <p class="edu-evidence">The uncertified but heavily practised syllabus: breaking a desktop environment, fixing it, then ricing it. Competence in Linux, Git and general troubleshooting lives here.</p>
+          </article>
         </div>
       </div>
     </section>

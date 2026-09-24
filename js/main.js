@@ -13,6 +13,9 @@
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var isDark = document.documentElement.dataset.side === 'blacklight';
 
+  // without an IntersectionObserver the scroll-reveal must never hide content
+  if (!('IntersectionObserver' in window)) document.documentElement.classList.add('no-io');
+
   function ready(fn) {
     if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn);
   }
@@ -96,10 +99,9 @@
     });
   });
 
-  /* ---------- mouse tracker (portrait) ---------- */
+  /* ---------- portrait (scroll-shrink corner toggle) ---------- */
   ready(function () {
     var tracker = $('#side-tracker');
-    var img = $('#tracker-img');
     if (!tracker) return;
 
     function setP(p) {
@@ -108,101 +110,35 @@
 
     if (!reduced.matches && fine) {
       tracker.classList.add('is-fixed');
-      var cur = { x: 0, y: 0 }, target = { x: 0, y: 0 };
-
       function onScroll() {
         var p = clamp(window.scrollY / (window.innerHeight * 0.95), 0, 1);
         setP(p);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       setP(0);
-
-      window.addEventListener('mousemove', function (e) {
-        var r = tracker.getBoundingClientRect();
-        target.x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-        target.y = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-      });
-
-      (function loop(t) {
-        cur.x = lerp(cur.x, target.x, 0.12);
-        cur.y = lerp(cur.y, target.y, 0.12);
-        var p = clamp(window.scrollY / (window.innerHeight * 0.95), 0, 1);
-        var inten = 1 - p;                      // subtitle as you scroll down
-        var rot = inten * 14;                   // max tilt at the top
-        var tx = cur.x * 6 * inten;
-        var ty = cur.y * 6 * inten;
-        var sc = 1 + 0.05 * Math.max(0, 1 - Math.abs(cur.x)) * inten;
-        if (img) img.style.transform =
-          'perspective(900px) rotateX(' + (-cur.y * rot - ty).toFixed(2) + 'deg)' +
-          ' rotateY(' + (cur.x * rot + tx).toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
-        requestAnimationFrame(loop);
-      })(0);
     } else {
       // touch / reduced motion: static portrait, tracker caption stays put
       setP(0);
     }
   });
 
-  /* ---------- Light ↔ Blacklight transition ---------- */
+  /* ---------- Light ↔ Blacklight transition (Star Wars Hyperdrive) ---------- */
 
-  function targetBg(href) {
-    // the side we are navigating TO decides the wash colour
-    var toDark = /blacklight/.test(href);
-    return toDark ? '#16151b' : '#f6f1e8';
-  }
-
-  function runTransition(href, originX, originY) {
-    if (reduced.matches) { window.location.href = href; return; }
-
-    var wash = $('#side-wash');
-    var veil = $('#ink-veil');
-    var px = (originX / window.innerWidth) * 100;
-    var py = (originY / window.innerHeight) * 100;
-
-    if (wash) {
-      wash.style.setProperty('--swash', targetBg(href));
-      wash.style.setProperty('--ox', px.toFixed(1) + '%');
-      wash.style.setProperty('--oy', py.toFixed(1) + '%');
-    }
-    if (veil) {
-      veil.hidden = false;
-      veil.innerHTML =
-        '<svg viewBox="0 0 640 220" role="presentation" style="max-width:60vw">' +
-        '<path class="ink-draw" d="M60 60 q 120 -60 260 -6 t 270 24" fill="none" stroke="var(--pink)" stroke-width="4" stroke-linecap="round"/>' +
-        '<circle class="ink-draw" cx="470" cy="70" r="46" fill="none" stroke="var(--accent)" stroke-width="4" stroke-dasharray="400 400"/>' +
-        '<path class="ink-draw" d="M540 84 l46 24 M586 108 l-16 42" fill="none" stroke="var(--peach)" stroke-width="4" stroke-linecap="round"/>' +
-        '<path class="ink-draw" d="M40 160 h 260" fill="none" stroke="var(--pink)" stroke-width="4" stroke-linecap="round"/>' +
-        '</svg>';
-      $$('.ink-draw', veil).forEach(function (p) {
-        try { var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; p.getBoundingClientRect(); p.style.transition = 'stroke-dashoffset .5s var(--ease)'; p.style.strokeDashoffset = '0'; }
-        catch (e) { /* ignore */ }
-      });
-      veil.style.animation = 'none';
-    }
-
-    document.body.classList.add('transforming');
-    $$('.ink').forEach(function (m) { m.classList.add('drawn'); });
-
-    requestAnimationFrame(function () {
-      setTimeout(function () {
-        if (wash) wash.classList.add('ing');
-      }, 90);
-    });
-
-    setTimeout(function () {
-      try { sessionStorage.setItem('side-arrive', '1'); } catch (e) {}
+  function runTransition(href) {
+    if (reduced.matches || typeof window.hyperspaceJump !== 'function') {
       window.location.href = href;
-    }, 620);
+      return;
+    }
+    window.hyperspaceJump(href);
   }
 
   function bindSideSwitch() {
-    $$('[data-switch], #side-tracker').forEach(function (el) {
+    $$('[data-switch], #side-tracker, .foot-note a[href$="blacklight.html"], .foot-note a[href$="index.html"]').forEach(function (el) {
       el.addEventListener('click', function (e) {
         var href = el.getAttribute('href');
         if (!href) return;
         e.preventDefault();
-        var r = el.getBoundingClientRect();
-        runTransition(href, r.left + r.width / 2, r.top + r.height / 2);
+        runTransition(href);
       });
     });
   }
@@ -294,9 +230,17 @@
   /* ---------- skill → evidence ---------- */
   ready(function () {
     var panel = $('#skill-evidence');
+    var chips = $$('.skill-chip');
+    if (!chips.length) return;
+    if (!panel || !$$('.project').length) {
+      // skills and projects live on separate pages now — send visitors over
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () { window.location.href = 'projects.html'; });
+      });
+      return;
+    }
     var list = $('#ev-list');
     var h4 = $('#ev-title');
-    if (!panel) return;
 
     function projectsFor(skill) {
       return $$('.project').filter(function (p) {

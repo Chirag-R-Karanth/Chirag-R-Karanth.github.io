@@ -1,12 +1,31 @@
 // hyperspace.js
 
 window.hyperspaceJump = function(targetUrl) {
+    if (document.getElementById('hyperspace-canvas')) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.location.href = targetUrl;
+        return;
+    }
+
     // Create canvas
     const canvas = document.createElement('canvas');
     canvas.id = 'hyperspace-canvas';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '9999';
+    canvas.style.opacity = '0';
+    canvas.style.transition = 'opacity 0.3s ease';
     document.body.appendChild(canvas);
     
     const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        window.location.href = targetUrl;
+        return;
+    }
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     

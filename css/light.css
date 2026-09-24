@@ -220,6 +220,11 @@ body {
 .ach p { color: var(--muted); font-size: .93rem; max-width: 70ch; }
 .ach p b { color: var(--text); font-weight: 600; }
 
+/* in-prose cross-page links (now that sections live on separate pages) */
+.edu .edu-evidence a, .ach p a, .sec-lead a {
+  color: var(--accent-ink); border-bottom: 1px dotted var(--accent);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
